@@ -1,0 +1,14 @@
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\obj\Debug\netcoreapp3.1\Mapping.csprojAssemblyReference.cache
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\obj\Debug\netcoreapp3.1\Mapping.AssemblyInfoInputs.cache
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\obj\Debug\netcoreapp3.1\Mapping.AssemblyInfo.cs
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\obj\Debug\netcoreapp3.1\Mapping.csproj.CoreCompileInputs.cache
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\bin\Debug\netcoreapp3.1\Mapping.deps.json
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\bin\Debug\netcoreapp3.1\Mapping.dll
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\bin\Debug\netcoreapp3.1\Mapping.pdb
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\bin\Debug\netcoreapp3.1\DbModels.dll
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\bin\Debug\netcoreapp3.1\Repository.dll
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\bin\Debug\netcoreapp3.1\Repository.pdb
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\bin\Debug\netcoreapp3.1\DbModels.pdb
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\obj\Debug\netcoreapp3.1\Mapping.csproj.CopyComplete
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\obj\Debug\netcoreapp3.1\Mapping.dll
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\Mapping\obj\Debug\netcoreapp3.1\Mapping.pdb

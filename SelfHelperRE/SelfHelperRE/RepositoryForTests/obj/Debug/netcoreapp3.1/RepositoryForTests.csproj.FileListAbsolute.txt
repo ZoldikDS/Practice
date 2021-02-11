@@ -1,0 +1,14 @@
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\bin\Debug\netcoreapp3.1\RepositoryForTests.deps.json
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\bin\Debug\netcoreapp3.1\RepositoryForTests.dll
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\bin\Debug\netcoreapp3.1\RepositoryForTests.pdb
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\bin\Debug\netcoreapp3.1\DbModels.dll
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\bin\Debug\netcoreapp3.1\Repository.dll
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\bin\Debug\netcoreapp3.1\DbModels.pdb
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\bin\Debug\netcoreapp3.1\Repository.pdb
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\obj\Debug\netcoreapp3.1\RepositoryForTests.csprojAssemblyReference.cache
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\obj\Debug\netcoreapp3.1\RepositoryForTests.AssemblyInfoInputs.cache
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\obj\Debug\netcoreapp3.1\RepositoryForTests.AssemblyInfo.cs
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\obj\Debug\netcoreapp3.1\RepositoryForTests.csproj.CoreCompileInputs.cache
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\obj\Debug\netcoreapp3.1\RepositoryForTests.csproj.CopyComplete
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\obj\Debug\netcoreapp3.1\RepositoryForTests.dll
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\RepositoryForTests\obj\Debug\netcoreapp3.1\RepositoryForTests.pdb
