@@ -38,6 +38,26 @@ namespace Repository
             }
         }
 
+        public bool CheckAddTarget(Target obj, string login)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckPerformedStatus()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckStatus(Target obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckTarget(Target obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task CheckTimeStatus()
         {
             IEnumerable<Target> targets = db.Targets.Where(e => e.Status == "Performed").ToList();

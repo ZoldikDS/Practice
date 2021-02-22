@@ -1,67 +1,41 @@
-﻿using System.Threading.Tasks;
+﻿using DbModels;
 using Mapping;
 using Repository;
-using RepositoryForTests;
+using System.Threading.Tasks;
 
 namespace Services
 {
-    public class UserService <T>
+    public class UserService<T>
     {
-        WorkingWithUser workingWithUser;
-        WorkingWithUserForTest workingWithUserForTest;
+        IUser<User> service;
         MappingForUser<T> mapping;
 
-        bool TestMod;
-
-        public UserService(bool TestMod = false)
+        public UserService(IUser<User> service)
         {
-            workingWithUser = new WorkingWithUser();
             mapping = new MappingForUser<T>();
-            workingWithUserForTest = new WorkingWithUserForTest();
+            this.service = service;
 
-            this.TestMod = TestMod;
         }
 
         public async Task AddUser(T obj)
         {
             User user = mapping.UserMapping(obj);
 
-            if (TestMod)
-            {
-                await workingWithUserForTest.AddUser(user);
-            }
-            else
-            {
-                await workingWithUser.AddUser(user);
-            }
+            await service.AddUser(user);
         }
 
         public async Task<bool> CheckUser(T obj, string param)
         {
             User user = mapping.UserMapping(obj);
 
-            if (TestMod)
-            {
-                return await workingWithUserForTest.CheckUser(user, param);
-            }
-            else
-            {
-                return await workingWithUser.CheckUser(user, param);
-            }
+            return await service.CheckUser(user, param);
         }
 
         public async Task<T> GetData(T obj)
         {
             User user = mapping.UserMapping(obj);
 
-            if (TestMod)
-            {
-                user = await workingWithUserForTest.GetData(user);
-            }
-            else
-            {
-                user = await workingWithUser.GetData(user);
-            }
+            user = await service.GetData(user);
 
             return mapping.BackUserMapping(user);
         }

@@ -11,6 +11,7 @@
           "Microsoft.NET.Test.Sdk": "16.5.0",
           "NUnit": "3.12.0",
           "NUnit3TestAdapter": "3.16.1",
+          "RepositoryForTests": "1.0.0",
           "SelfHelperRE": "1.0.0",
           "Services": "1.0.0"
         },
@@ -1492,7 +1493,9 @@
       },
       "SelfHelperRE/1.0.0": {
         "dependencies": {
+          "DbModels": "1.0.0",
           "MailKit": "2.10.1",
+          "Repository": "1.0.0",
           "Services": "1.0.0"
         },
         "runtime": {

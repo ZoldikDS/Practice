@@ -10,5 +10,8 @@ namespace DbModels
         public Task AddEntry(T obj, string login);
         public Task EditEntry(T obj);
         public Task DeleteEntry(T obj);
+
+        public bool CheckEntry(T obj);
+        public bool CheckAddEntry(T obj, string login);
     }
 }

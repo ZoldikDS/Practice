@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using RepositoryForTests;
 using SelfHelperRE;
 using SelfHelperRE.Models;
 using Services;
@@ -14,11 +15,13 @@ namespace InMemory
         DiaryService<DiaryCatch> diaryService;
         DiaryService<DiaryData> diaryDataService;
 
+        WorkingWithDiaryForTest WorkingWithDiaryForTest = new WorkingWithDiaryForTest();
+
         [SetUp]
         public void Setup()
         {
-            diaryService = new DiaryService<DiaryCatch>(true);
-            diaryDataService = new DiaryService<DiaryData>(true);
+            diaryService = new DiaryService<DiaryCatch>(WorkingWithDiaryForTest);
+            diaryDataService = new DiaryService<DiaryData>(WorkingWithDiaryForTest);
 ;
         }
 
@@ -69,7 +72,7 @@ namespace InMemory
         [Test]
         public async Task Delete_Diary_Entries_Test()
         {
-            DiaryCatch diaryData = new DiaryCatch { Id = "3", Text = "12313", Date = "01.01.2021 00:00:00" };
+            DiaryCatch diaryData = new DiaryCatch { Id = "2", Text = "12313", Date = "01.01.2021 00:00:00" };
 
             await diaryService.DeleteEntry(diaryData);
 

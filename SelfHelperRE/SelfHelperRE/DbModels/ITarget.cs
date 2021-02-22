@@ -11,5 +11,11 @@ namespace DbModels
         public Task AddTarget(string login, T obj);
         public Task EditTarget(T obj);
         public Task DeleteTarget(T obj);
+
+        public bool CheckTarget(T obj);
+        public bool CheckAddTarget(T obj, string login);
+        public bool CheckPerformedStatus();
+        public bool CheckStatus(T obj);
+
     }
 }

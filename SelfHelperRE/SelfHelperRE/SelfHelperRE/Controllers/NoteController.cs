@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DbModels;
+using Microsoft.AspNetCore.Mvc;
+using Repository;
 using SelfHelper.Comparers;
 using SelfHelperRE.Models;
 using Services;
@@ -14,9 +16,9 @@ namespace SelfHelperRE.Controllers
 
         NoteService<NoteData> noteDataService;
 
-        public NoteController()
+        public NoteController(INote<Note> service)
         {
-            noteDataService = new NoteService<NoteData>();
+            this.noteDataService = new NoteService<NoteData>(service);
         }
 
         [HttpGet]

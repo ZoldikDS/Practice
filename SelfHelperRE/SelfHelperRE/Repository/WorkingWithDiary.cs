@@ -30,6 +30,16 @@ namespace Repository
             }
         }
 
+        public bool CheckAddEntry(Diary obj, string login)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckEntry(Diary obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task DeleteEntry(Diary obj)
         {
             Diary diary = await db.Diaries.FirstOrDefaultAsync(u => u.Id == obj.Id);
@@ -69,5 +79,6 @@ namespace Repository
 
             return result;
         }
+
     }
 }

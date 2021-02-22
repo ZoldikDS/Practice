@@ -10,5 +10,8 @@ namespace DbModels
         public Task AddNote(T obj, string login);
         public Task EditNote(T obj);
         public Task DeleteNote(T obj);
+
+        public bool CheckAddNote(T obj, string login);
+        public bool CheckNote(T obj);
     }
 }

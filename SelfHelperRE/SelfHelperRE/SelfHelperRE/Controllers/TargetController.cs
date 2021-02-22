@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DbModels;
+using Microsoft.AspNetCore.Mvc;
+using Repository;
 using SelfHelperRE.Models;
 using Services;
 using System;
@@ -12,10 +14,10 @@ namespace SelfHelperRE.Controllers
         TargetService<TargetCatch> targetService;
         TargetService<TargetData> targetDataService;
 
-        public TargetController()
+        public TargetController(ITarget<Target> service)
         {
-            targetService = new TargetService<TargetCatch>();
-            targetDataService = new TargetService<TargetData>();
+            targetService = new TargetService<TargetCatch>(service);
+            targetDataService = new TargetService<TargetData>(service);
         }
 
         [HttpPost]

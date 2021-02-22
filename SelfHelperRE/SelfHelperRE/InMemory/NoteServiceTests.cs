@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using RepositoryForTests;
 using SelfHelperRE.Models;
 using Services;
 using System;
@@ -12,10 +13,12 @@ namespace InMemory
     {
         NoteService<NoteData> noteDataService;
 
+        WorkingWithNoteForTests workingWithNoteForTests = new WorkingWithNoteForTests();
+
         [SetUp]
         public void Setup()
         {
-            noteDataService = new NoteService<NoteData>(true);
+            noteDataService = new NoteService<NoteData>(workingWithNoteForTests);
         }
 
         [Test]
@@ -77,7 +80,7 @@ namespace InMemory
         [TestCase(false)]
         public async Task Edit_Note_Test(bool important)
         {
-            NoteData data = new NoteData() {Id = 3, Topic = "Topic in test for edit", Title = "Title in test for edit", Text = "Text in test for edit", Important = important };
+            NoteData data = new NoteData() {Id = 2, Topic = "Topic in test for edit", Title = "Title in test for edit", Text = "Text in test for edit", Important = important };
 
             await noteDataService.EditNote(data);
 

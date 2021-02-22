@@ -37,6 +37,16 @@ namespace Repository
             };
         }
 
+        public bool CheckAddNote(Note obj, string login)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckNote(Note obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task DeleteNote(Note obj)
         {
             Note note = db.Notes.FirstOrDefault(e => e.Id == obj.Id);

@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using RepositoryForTests;
 using SelfHelperRE.Models;
 using SelfHelperRE.ViewModels;
 using Services;
@@ -14,13 +15,15 @@ namespace InMemory
         UserService<CheckEmail> userServiceEmail;
         UserService<UserData> userServiceData;
 
+        WorkingWithUserForTest workingWithUserForTest = new WorkingWithUserForTest();
+
         [SetUp]
         public void Setup()
         {
-            userServiceRegistration = new UserService<RegisterModel>(true);
-            userServiceLogin = new UserService<LoginModel>(true);
-            userServiceEmail = new UserService<CheckEmail>(true);
-            userServiceData = new UserService<UserData>(true);
+            userServiceRegistration = new UserService<RegisterModel>(workingWithUserForTest);
+            userServiceLogin = new UserService<LoginModel>(workingWithUserForTest);
+            userServiceEmail = new UserService<CheckEmail>(workingWithUserForTest);
+            userServiceData = new UserService<UserData>(workingWithUserForTest);
         }
 
         [Test]
@@ -40,7 +43,8 @@ namespace InMemory
         [Test]
         public async Task Check_User_For_Registration_Test()
         {
-            RegisterModel registerModel = new RegisterModel { Login = "zzz", Email = "zzasd@mail.ru" };
+            RegisterModel registerModel = new RegisterModel { Login = "wqe", Email = "qwed@mail.ru" };
+
             string param = "registration";
 
             bool check = await userServiceRegistration.CheckUser(registerModel, param);

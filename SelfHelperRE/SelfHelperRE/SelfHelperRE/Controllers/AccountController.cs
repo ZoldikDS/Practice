@@ -1,8 +1,10 @@
-﻿using MailKit.Net.Smtp;
+﻿using DbModels;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
+using Repository;
 using SelfHelperRE.Models;
 using SelfHelperRE.ViewModels;
 using Services;
@@ -17,12 +19,14 @@ namespace SelfHelperRE.Controllers
         UserService<RegisterModel> userServiceRegistration;
         UserService<LoginModel> userServiceLogin;
         UserService<CheckEmail> userServiceEmail;
+        UserService<UserData> userServiceData;
 
-        public AccountController()
+        public AccountController(IUser<User> service)
         {
-            userServiceLogin = new UserService<LoginModel>();
-            userServiceRegistration = new UserService<RegisterModel>();
-            userServiceEmail = new UserService<CheckEmail>();
+            userServiceLogin = new UserService<LoginModel>(service);
+            userServiceRegistration = new UserService<RegisterModel>(service);
+            userServiceEmail = new UserService<CheckEmail>(service);
+            userServiceData = new UserService<UserData>(service);
         }
         [HttpGet]
         public IActionResult Login()
@@ -103,12 +107,10 @@ namespace SelfHelperRE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Recovery(CheckEmail model)
         {
-            userServiceEmail = new UserService<CheckEmail>();
             if (ModelState.IsValid)
             {
                 if (await userServiceEmail.CheckUser(model, "email") == true)
                 {
-                    UserService<UserData> userServiceData = new UserService<UserData>();
                     UserData user = new UserData();
                     user.Email = model.Email;
                     user = await userServiceData.GetData(user);

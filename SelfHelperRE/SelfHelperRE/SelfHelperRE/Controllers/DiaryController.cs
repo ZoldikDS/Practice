@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using SelfHelperRE.Models;
 using System;
 using System.Linq;
+using DbModels;
+using Repository;
 
 namespace SelfHelperRE.Controllers
 {
@@ -13,10 +15,10 @@ namespace SelfHelperRE.Controllers
         DiaryService<DiaryCatch> diaryService;
         DiaryService<DiaryData> diaryDataService;
 
-        public DiaryController()
+        public DiaryController(IDiary<Diary> service)
         {
-            diaryService = new DiaryService<DiaryCatch>();
-            diaryDataService = new DiaryService<DiaryData>();
+            this.diaryService = new DiaryService<DiaryCatch>(service);
+            this.diaryDataService = new DiaryService<DiaryData>(service);
         }
 
         [HttpGet]

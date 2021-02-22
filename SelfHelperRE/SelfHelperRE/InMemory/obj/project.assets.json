@@ -2121,7 +2121,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "DbModels": "1.0.0",
           "MailKit": "2.10.1",
+          "Repository": "1.0.0",
           "Services": "1.0.0"
         },
         "compile": {
@@ -7512,6 +7514,7 @@
       "Microsoft.NET.Test.Sdk >= 16.5.0",
       "NUnit >= 3.12.0",
       "NUnit3TestAdapter >= 3.16.1",
+      "RepositoryForTests >= 1.0.0",
       "SelfHelperRE >= 1.0.0",
       "Services >= 1.0.0"
     ]
@@ -7548,6 +7551,9 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
+            "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\RepositoryForTests\\RepositoryForTests.csproj": {
+              "projectPath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\RepositoryForTests\\RepositoryForTests.csproj"
+            },
             "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\SelfHelperRE\\SelfHelperRE.csproj": {
               "projectPath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\SelfHelperRE\\SelfHelperRE.csproj"
             },
@@ -7598,7 +7604,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

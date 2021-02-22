@@ -29,7 +29,7 @@ namespace RepositoryForTests
             }
         }
 
-        public bool CheckAddTarget(string login, Target obj)
+        public bool CheckAddTarget(Target obj, string login)
         {
             User user = context.users.FirstOrDefault(e => e.Login == login);
 

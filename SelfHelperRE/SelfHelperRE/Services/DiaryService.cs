@@ -2,39 +2,25 @@
 using Mapping;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using RepositoryForTests;
+using DbModels;
 
 namespace Services
 {
     public class DiaryService <T>
     {
-        WorkingWithDiary workingWithDiary;
-        WorkingWithDiaryForTest workingWithDiaryForTest;
         MappingForDiary<T> mapping;
+        IDiary<Diary> service;
 
-        bool TestMod;
-
-        public DiaryService(bool TestMod = false)
+        public DiaryService(IDiary<Diary> service)
         {
-            workingWithDiary = new WorkingWithDiary();
-            mapping = new MappingForDiary<T>();
-            workingWithDiaryForTest = new WorkingWithDiaryForTest();
+            this.service = service;
 
-            this.TestMod = TestMod;
+            mapping = new MappingForDiary<T>();
         }
 
         public async Task<List<T>> LoadDates(string login)
         {
-            List<Diary> diary;
-
-            if (TestMod)
-            {
-                diary =await workingWithDiaryForTest.GetDates(login);
-            }
-            else
-            {
-                diary = await workingWithDiary.GetDates(login);
-            }
+            List<Diary> diary = await service.GetDates(login);
 
             List<T> result = new List<T>();
 
@@ -44,23 +30,13 @@ namespace Services
             }
 
             return result;
-
         }
 
         public async Task<List<T>> LoadEntries(T obj, string login)
         {
             Diary diary = mapping.DiaryMapping(obj);
 
-            List<Diary> diaryList;
-
-            if (TestMod)
-            {
-                diaryList = await workingWithDiaryForTest.GetEntries(diary, login);
-            }
-            else
-            {
-                diaryList = await workingWithDiary.GetEntries(diary, login);
-            }
+            List<Diary> diaryList = await service.GetEntries(diary, login);
 
             List<T> result = new List<T>();
 
@@ -70,21 +46,13 @@ namespace Services
             }
 
             return result;
-
         }
 
         public async Task AddEntry(T obj, string login)
         {
             Diary diary = mapping.DiaryMapping(obj);
 
-            if (TestMod)
-            {
-                await workingWithDiaryForTest.AddEntry(diary, login);
-            }
-            else
-            {
-                await workingWithDiary.AddEntry(diary, login);
-            }
+            await service.AddEntry(diary, login);
 
         }
 
@@ -92,14 +60,7 @@ namespace Services
         {
             Diary diary = mapping.DiaryMapping(obj);
 
-            if (TestMod)
-            {
-                await workingWithDiaryForTest.EditEntry(diary);
-            }
-            else
-            {
-                await workingWithDiary.EditEntry(diary);
-            }
+            await service.EditEntry(diary);
 
         }
 
@@ -107,14 +68,7 @@ namespace Services
         {
             Diary diary = mapping.DiaryMapping(obj);
 
-            if (TestMod)
-            {
-                await workingWithDiaryForTest.DeleteEntry(diary); ;
-            }
-            else
-            {
-                await workingWithDiary.DeleteEntry(diary);
-            }
+            await service.DeleteEntry(diary);
 
         }
 
@@ -122,24 +76,14 @@ namespace Services
         {
             Diary diary = mapping.DiaryMapping(obj);
 
-            if (TestMod)
-            {
-                return workingWithDiaryForTest.CheckAddEntry(diary, login); ;
-            }
-
-            return false;
+            return service.CheckAddEntry(diary, login);
         }
 
         public bool CheckEntry(T obj)
         {
             Diary diary = mapping.DiaryMapping(obj);
 
-            if (TestMod)
-            {
-                return workingWithDiaryForTest.CheckEntry(diary);
-            }
-
-            return false;
+            return service.CheckEntry(diary);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using RepositoryForTests;
 using SelfHelperRE;
 using SelfHelperRE.Models;
 using Services;
@@ -14,11 +15,13 @@ namespace InMemory
         TargetService<TargetCatch> targetService;
         TargetService<TargetData> targetDataService;
 
+        WorkingWithTargetForTest workingWithTargetForTest = new WorkingWithTargetForTest();
+
         [SetUp]
         public void Setup()
         {
-            targetService = new TargetService<TargetCatch>(true);
-            targetDataService = new TargetService<TargetData>(true);
+            targetService = new TargetService<TargetCatch>(workingWithTargetForTest);
+            targetDataService = new TargetService<TargetData>(workingWithTargetForTest);
         }
 
         [Test]
@@ -93,7 +96,7 @@ namespace InMemory
         {
             TargetData targetData = new TargetData()
             {
-                Id = 0
+                Id = 1
             };
 
             await targetDataService.DeleteTarget(targetData);

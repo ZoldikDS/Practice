@@ -1,6 +1,6 @@
-﻿using Mapping;
+﻿using DbModels;
+using Mapping;
 using Repository;
-using RepositoryForTests;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,33 +8,20 @@ namespace Services
 {
     public class NoteService <T>
     {
-        WorkingWithNote workingWithNote;
+        INote<Note> service;
         MappingForNote<T> mapping;
-        WorkingWithNoteForTests workingWithNoteForTests;
 
         bool TestMod;
 
-        public NoteService(bool TestMod = false)
+        public NoteService(INote<Note> service)
         {
-            workingWithNote = new WorkingWithNote();
             mapping = new MappingForNote<T>();
-            workingWithNoteForTests = new WorkingWithNoteForTests();
-
-            this.TestMod = TestMod;
+            this.service = service;
         }
 
         public async Task<List<T>> LoadCategories(string login)
         {
-            List<Note> notes;
-
-            if (TestMod)
-            {
-                notes = await workingWithNoteForTests.GetCategories(login);
-            }
-            else
-            {
-                notes = await workingWithNote.GetCategories(login);
-            }
+            List<Note> notes = await service.GetCategories(login);
 
             List<T> result = new List<T>();
 
@@ -50,16 +37,7 @@ namespace Services
         {
             Note note = mapping.NoteMapping(obj);
 
-            List<Note> notes;
-
-            if (TestMod)
-            {
-                notes = await workingWithNoteForTests.GetNotes(note, login);
-            }
-            else
-            {
-                notes = await workingWithNote.GetNotes(note, login);
-            }
+            List<Note> notes = await service.GetNotes(note, login);
 
             List<T> result = new List<T>();
 
@@ -75,14 +53,7 @@ namespace Services
         {
             Note note = mapping.NoteMapping(obj);
 
-            if (TestMod)
-            {
-                await workingWithNoteForTests.AddNote(note, login);
-            }
-            else
-            {
-                await workingWithNote.AddNote(note, login);
-            }
+            await service.AddNote(note, login);
 
         }
 
@@ -90,14 +61,7 @@ namespace Services
         {
             Note note = mapping.NoteMapping(obj);
 
-            if (TestMod)
-            {
-                await workingWithNoteForTests.EditNote(note);
-            }
-            else
-            {
-                await workingWithNote.EditNote(note);
-            }
+            await service.EditNote(note);
 
         }
 
@@ -105,14 +69,7 @@ namespace Services
         {
             Note note = mapping.NoteMapping(obj);
 
-            if (TestMod)
-            {
-                await workingWithNoteForTests.DeleteNote(note);
-            }
-            else
-            {
-                await workingWithNote.DeleteNote(note);
-            }
+            await service.DeleteNote(note);
 
         }
 
@@ -120,24 +77,14 @@ namespace Services
         {
             Note note = mapping.NoteMapping(obj);
 
-            if (TestMod)
-            {
-                return workingWithNoteForTests.CheckAddNote(note, login);
-            }
-
-            return false;
+            return service.CheckAddNote(note, login);
         }    
         
         public bool CheckNoteForTest(T obj)
         {
             Note note = mapping.NoteMapping(obj);
 
-            if (TestMod)
-            {
-                return workingWithNoteForTests.CheckNote(note);
-            }
-
-            return false;
+            return service.CheckNote(note);
         }
     }
 }

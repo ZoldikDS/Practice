@@ -1,8 +1,12 @@
+using DbModels;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Repository;
+using SelfHelperRE.Models;
+using Services;
 
 namespace SelfHelperRE
 {
@@ -16,6 +20,11 @@ namespace SelfHelperRE
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
 
+            services.AddTransient<IDiary<Diary>, WorkingWithDiary>();
+            services.AddTransient<INote<Note>, WorkingWithNote>();
+            services.AddTransient<ITarget<Target>, WorkingWithTarget>();
+            services.AddTransient<IUser<User>, WorkingWithUser>();
+            
             services.AddControllersWithViews();
         }
 
@@ -30,6 +39,7 @@ namespace SelfHelperRE
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
