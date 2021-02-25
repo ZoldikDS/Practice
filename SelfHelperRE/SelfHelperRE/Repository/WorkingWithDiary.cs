@@ -16,52 +16,77 @@ namespace Repository
             db = new ApplicationContext();
         }
 
-        public async Task AddEntry(Diary obj, string login)
+        public async Task<int> AddEntry(Diary obj, string login)
         {
+
             DateTime dateTime = DateTime.Now;
 
             User user = db.Users.FirstOrDefault(e => e.Login == login);
 
             if (user != null)
             {
-                db.Diaries.Add(new Diary { Text = obj.Text, DateTime = dateTime, User = user });
+                try
+                {
+                    db.Diaries.Add(new Diary { Text = obj.Text, DateTime = dateTime, User = user });
 
-                await db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
             }
+
+            return -1;
         }
 
-        public bool CheckAddEntry(Diary obj, string login)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CheckEntry(Diary obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task DeleteEntry(Diary obj)
+        public async Task<int> DeleteEntry(Diary obj)
         {
             Diary diary = await db.Diaries.FirstOrDefaultAsync(u => u.Id == obj.Id);
 
             if (diary != null)
             {
-                db.Diaries.Remove(diary);
+                try
+                {
+                    db.Diaries.Remove(diary);
 
-                await db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
             }
+
+            return -1;
         }
 
-        public async Task EditEntry(Diary obj)
+        public async Task<int> EditEntry(Diary obj)
         {
             Diary diary = db.Diaries.FirstOrDefault(e => e.Id == obj.Id);
 
             if (diary != null)
             {
-                diary.Text = obj.Text;
+                try
+                {
+                    diary.Text = obj.Text;
 
-                await db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
             }
+
+            return -1;
         }
         public async Task<List<Diary>> GetDates(string login)
         {

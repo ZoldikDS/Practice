@@ -1,3 +1,5 @@
+using AutoMapper;
+using Mapping;
 using NUnit.Framework;
 using RepositoryForTests;
 using SelfHelperRE.Models;
@@ -20,10 +22,20 @@ namespace InMemory
         [SetUp]
         public void Setup()
         {
-            userServiceRegistration = new UserService<RegisterModel>(workingWithUserForTest);
-            userServiceLogin = new UserService<LoginModel>(workingWithUserForTest);
-            userServiceEmail = new UserService<CheckEmail>(workingWithUserForTest);
-            userServiceData = new UserService<UserData>(workingWithUserForTest);
+            MapperConfiguration mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingUser<RegisterModel>());
+                mc.AddProfile(new MappingUser<LoginModel>());
+                mc.AddProfile(new MappingUser<CheckEmail>());
+                mc.AddProfile(new MappingUser<UserData>());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+
+            userServiceRegistration = new UserService<RegisterModel>(workingWithUserForTest, mapper);
+            userServiceLogin = new UserService<LoginModel>(workingWithUserForTest, mapper);
+            userServiceEmail = new UserService<CheckEmail>(workingWithUserForTest, mapper);
+            userServiceData = new UserService<UserData>(workingWithUserForTest, mapper);
         }
 
         [Test]
@@ -83,6 +95,5 @@ namespace InMemory
 
             Assert.IsNotNull(user);
         }
-
     }
 }

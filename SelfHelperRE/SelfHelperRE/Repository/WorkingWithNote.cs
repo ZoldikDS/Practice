@@ -15,7 +15,7 @@ namespace Repository
             db = new ApplicationContext();
         }
 
-        public async Task AddNote(Note obj, string login)
+        public async Task<int> AddNote(Note obj, string login)
         {
             DateTime dateTime = DateTime.Now;
 
@@ -23,55 +23,80 @@ namespace Repository
 
             if (user != null)
             {
-                db.Notes.Add(new Note
+                try
                 {
-                    Text = obj.Text,
-                    DateTime = dateTime,
-                    User = user,
-                    Title = obj.Title,
-                    Topic = obj.Topic,
-                    Important = obj.Important
-                });
+                    db.Notes.Add(new Note
+                    {
+                        Text = obj.Text,
+                        DateTime = dateTime,
+                        User = user,
+                        Title = obj.Title,
+                        Topic = obj.Topic,
+                        Important = obj.Important
+                    });
 
-                await db.SaveChangesAsync();
-            };
+                    await db.SaveChangesAsync();
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+            }
+
+            return -1;
         }
 
-        public bool CheckAddNote(Note obj, string login)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CheckNote(Note obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task DeleteNote(Note obj)
+        public async Task<int> DeleteNote(Note obj)
         {
             Note note = db.Notes.FirstOrDefault(e => e.Id == obj.Id);
 
             if (note != null)
             {
-                db.Notes.Remove(note);
+                try
+                {
+                    db.Notes.Remove(note);
 
-                await db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
             }
+
+            return -1;
         }
 
-        public async Task EditNote(Note obj)
+        public async Task<int> EditNote(Note obj)
         {
             Note note = db.Notes.FirstOrDefault(e => e.Id == obj.Id);
 
             if (note != null)
             {
-                note.Text = obj.Text;
-                note.Topic = obj.Topic;
-                note.Title = obj.Title;
-                note.Important = obj.Important;
+                try
+                {
+                    note.Text = obj.Text;
+                    note.Topic = obj.Topic;
+                    note.Title = obj.Title;
+                    note.Important = obj.Important;
 
-                await db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
             }
+
+            return -1;
         }
 
         public async Task<List<Note>> GetCategories(string login)

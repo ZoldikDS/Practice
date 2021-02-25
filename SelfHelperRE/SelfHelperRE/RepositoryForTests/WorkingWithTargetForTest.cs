@@ -15,94 +15,121 @@ namespace RepositoryForTests
             context = new ApplicationContextForTests();
         }
 
-        public async Task AddTarget(string login, Target obj)
+        public async Task<int> AddTarget(string login, Target obj)
         {
             User user = context.users.FirstOrDefault(e => e.Login == login);
 
             if (user != null)
             {
-                obj.Id = context.targets.Count();
-
-                obj.User = user;
-
-                context.targets.Add(obj);
-            }
-        }
-
-        public bool CheckAddTarget(Target obj, string login)
-        {
-            User user = context.users.FirstOrDefault(e => e.Login == login);
-
-            Target target = context.targets.FirstOrDefault(e => e.User == user && e.Text == obj.Text);
-
-            return target != null;
-        }
-
-        public async Task ChangeStatus(Target obj)
-        {
-            Target target = context.targets.FirstOrDefault(e => e.Id == obj.Id);
-
-            if (target != null)
-            {
-                target.Status = obj.Status;
-            }
-        }
-
-        public bool CheckStatus(Target obj)
-        {
-            Target target = context.targets.FirstOrDefault(e => e.Status == obj.Status && e.Id == obj.Id);
-
-            return target != null;
-        }
-
-        public async Task CheckTimeStatus()
-        {
-            IEnumerable<Target> targets = context.targets.Where(e => e.Status == "Performed").ToList();
-
-            foreach (var item in targets)
-            {
-                if (item.DateTimeSecond < DateTime.Now)
+                try
                 {
-                    item.Status = "Failed";
+                    obj.Id = context.targets.Count();
+
+                    obj.User = user;
+
+                    context.targets.Add(obj);
+
+                    return 1;
                 }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
             }
+
+            return -1;
         }
 
-        public bool CheckPerformedStatus()
-        {
-            Target target = context.targets.FirstOrDefault(e => e.Status == "Performed" && e.DateTimeSecond < DateTime.Now);
-
-            return target != null;
-        }
-
-        public async Task DeleteTarget(Target obj)
+        public async Task<int> ChangeStatus(Target obj)
         {
             Target target = context.targets.FirstOrDefault(e => e.Id == obj.Id);
 
             if (target != null)
             {
-                context.targets.Remove(target);
+                try
+                {
+                    target.Status = obj.Status;
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
 
             }
+
+            return -1;
         }
 
-        public async Task EditTarget(Target obj)
+        public async Task<int> CheckTimeStatus()
+        {
+            try
+            {
+                IEnumerable<Target> targets = context.targets.Where(e => e.Status == "Performed").ToList();
+
+                foreach (var item in targets)
+                {
+                    if (item.DateTimeSecond < DateTime.Now)
+                    {
+                        item.Status = "Failed";
+                    }
+                }
+
+                return 1;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+
+        }
+
+        public async Task<int> DeleteTarget(Target obj)
         {
             Target target = context.targets.FirstOrDefault(e => e.Id == obj.Id);
 
             if (target != null)
             {
-                target.Text = obj.Text;
-                target.DateTimeFirst = obj.DateTimeFirst;
-                target.DateTimeSecond = obj.DateTimeSecond;
+                try
+                {
+                    context.targets.Remove(target);
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
             }
+
+            return -1;
         }
 
-        public bool CheckTarget(Target obj)
+        public async Task<int> EditTarget(Target obj)
         {
             Target target = context.targets.FirstOrDefault(e => e.Id == obj.Id);
 
-            return target != null;
+            if (target != null)
+            {
+                try
+                {
+                    target.Text = obj.Text;
+                    target.DateTimeFirst = obj.DateTimeFirst;
+                    target.DateTimeSecond = obj.DateTimeSecond;
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
+            }
+
+            return -1;
         }
 
         public async Task<List<Target>> GetTargets(string login, Target obj)

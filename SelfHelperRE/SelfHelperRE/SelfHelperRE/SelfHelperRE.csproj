@@ -5,11 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="HouseCool.AutoMapper.Extensions.DependencyInjection" Version="1.0.3" />
     <PackageReference Include="MailKit" Version="2.10.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DbModels\DbModels.csproj" />
+    <ProjectReference Include="..\Mapping\Mapping.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
     <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>

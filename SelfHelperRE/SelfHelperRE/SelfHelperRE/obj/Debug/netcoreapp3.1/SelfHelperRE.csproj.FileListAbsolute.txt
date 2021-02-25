@@ -93,5 +93,5 @@ D:\Projects\Practice\SelfHelperRE\SelfHelperRE\SelfHelperRE\bin\Debug\netcoreapp
 D:\Projects\Practice\SelfHelperRE\SelfHelperRE\SelfHelperRE\bin\Debug\netcoreapp3.1\Mapping.dll
 D:\Projects\Practice\SelfHelperRE\SelfHelperRE\SelfHelperRE\bin\Debug\netcoreapp3.1\DbModels.pdb
 D:\Projects\Practice\SelfHelperRE\SelfHelperRE\SelfHelperRE\bin\Debug\netcoreapp3.1\Mapping.pdb
-D:\Projects\Practice\SelfHelperRE\SelfHelperRE\SelfHelperRE\bin\Debug\netcoreapp3.1\RepositoryForTests.dll
-D:\Projects\Practice\SelfHelperRE\SelfHelperRE\SelfHelperRE\bin\Debug\netcoreapp3.1\RepositoryForTests.pdb
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\SelfHelperRE\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\SelfHelperRE\bin\Debug\netcoreapp3.1\HouseCool.AutoMapper.Extensions.DependencyInjection.dll

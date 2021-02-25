@@ -22,7 +22,7 @@ async function LoadDates(){
     const dates = await response.json();
 
     if(dates.length != 0){
-        date = dates[dates.length - 1].dateTime.substring(0,4) + '-' + dates[dates.length - 1].dateTime.substring(5,7) +'-'+ dates[dates.length - 1].dateTime.substring(8,10);
+        date = dates[dates.length - 1].dateTime.substring(6,10) + '-' + dates[dates.length - 1].dateTime.substring(3,5) +'-'+ dates[dates.length - 1].dateTime.substring(0,2);
         $('.diary-date').val(date);
     }
 
@@ -37,7 +37,7 @@ async function LoadEntries(){
         method: 'POST',
         headers: { "Accept": "application/json", "Content-Type": "application/json"},
         body: JSON.stringify({
-            date: date
+            dateTime: date
         } )
     }).catch(err => console.error("Error", err));
 

@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "w9Mu1UFsS+P00h8oN8C2zte2mPWeFUVQ31gmb38vJITWP7JBjQlbSXUvo/gU3ktVWLjOkfdcVWTJfrekkv1USA==",
+  "dgSpecHash": "ShzfamaxhDdV3nfJx4//l6b1U8ukpTms1KTOLenPRHuhdAQf8Oik1ko8imkY8RZvae/FYsB6CjZZb/IaRVlRgQ==",
   "success": true,
   "projectFilePath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\RepositoryForTests\\RepositoryForTests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\37529\\.nuget\\packages\\automapper\\7.0.1\\automapper.7.0.1.nupkg.sha512",
+    "C:\\Users\\37529\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\5.0.1\\automapper.extensions.microsoft.dependencyinjection.5.0.1.nupkg.sha512",
+    "C:\\Users\\37529\\.nuget\\packages\\housecool.automapper.extensions.dependencyinjection\\1.0.3\\housecool.automapper.extensions.dependencyinjection.1.0.3.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",
@@ -93,6 +96,7 @@
     "C:\\Users\\37529\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\system.threading.tasks.extensions\\4.3.0\\system.threading.tasks.extensions.4.3.0.nupkg.sha512",
+    "C:\\Users\\37529\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",

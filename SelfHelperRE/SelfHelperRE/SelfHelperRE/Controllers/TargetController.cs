@@ -1,9 +1,8 @@
-﻿using DbModels;
+﻿using AutoMapper;
+using DbModels;
 using Microsoft.AspNetCore.Mvc;
 using Repository;
-using SelfHelperRE.Models;
 using Services;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,22 +11,16 @@ namespace SelfHelperRE.Controllers
     public class TargetController : Controller
     {
         TargetService<TargetCatch> targetService;
-        TargetService<TargetData> targetDataService;
 
-        public TargetController(ITarget<Target> service)
+        public TargetController(ITarget<Target> service, IMapper targetMapper)
         {
-            targetService = new TargetService<TargetCatch>(service);
-            targetDataService = new TargetService<TargetData>(service);
+            targetService = new TargetService<TargetCatch>(service, targetMapper);
         }
 
         [HttpPost]
-        public async Task<List<TargetData>> LoadTargets([FromBody] TargetCatch targetCatch)
-        {
-            TargetData targetData = new TargetData();
-
-            targetData.Status = targetCatch.Status;
-            
-            return await targetDataService.LoadTargets(User.Identity.Name, targetData);
+        public async Task<List<TargetCatch>> LoadTargets([FromBody] TargetCatch targetCatch)
+        {       
+            return await targetService.LoadTargets(User.Identity.Name, targetCatch);
         }
 
         [HttpPost]
@@ -47,33 +40,18 @@ namespace SelfHelperRE.Controllers
         [HttpPost]
         public async Task AddTarget([FromBody] TargetCatch targetCatch)
         {
-            if (targetCatch.Text != "" && targetCatch.Text != null && targetCatch.DateTimeStart != "" && targetCatch.DateTimeStart != null && targetCatch.DateTimeEnd != "" && targetCatch.DateTimeEnd != null)
+            if (targetCatch.Text != "" && targetCatch.Text != null && targetCatch.DateTimeFirst != "" && targetCatch.DateTimeFirst != null && targetCatch.DateTimeSecond != "" && targetCatch.DateTimeSecond != null)
             {
-                TargetData targetData = new TargetData();
-
-                targetData.Status = targetCatch.Status;
-                targetData.DateTimeFirst = Convert.ToDateTime(targetCatch.DateTimeStart);
-                targetData.DateTimeSecond = Convert.ToDateTime(targetCatch.DateTimeEnd);
-                targetData.Text = targetCatch.Text;
-
-                await targetDataService.AddTarget(User.Identity.Name, targetData);
+                await targetService.AddTarget(User.Identity.Name, targetCatch);
             }
         }
 
         [HttpPost]
         public async Task EditTarget([FromBody] TargetCatch targetCatch)
         {
-            if (targetCatch.Text != "" && targetCatch.Text != null && targetCatch.DateTimeStart != "" && targetCatch.DateTimeStart != null && targetCatch.DateTimeEnd != "" && targetCatch.DateTimeEnd != null && targetCatch.Id != "" && targetCatch.Id != null)
+            if (targetCatch.Text != "" && targetCatch.Text != null && targetCatch.DateTimeFirst != "" && targetCatch.DateTimeFirst != null && targetCatch.DateTimeSecond != "" && targetCatch.DateTimeSecond != null && targetCatch.Id != "" && targetCatch.Id != null)
             {
-                TargetData targetData = new TargetData();
-
-                targetData.Id = Convert.ToInt32(targetCatch.Id);
-                targetData.Status = targetCatch.Status;
-                targetData.DateTimeFirst = Convert.ToDateTime(targetCatch.DateTimeStart);
-                targetData.DateTimeSecond = Convert.ToDateTime(targetCatch.DateTimeEnd);
-                targetData.Text = targetCatch.Text;
-
-                await targetDataService.EditTarget(targetData);
+                await targetService.EditTarget(targetCatch);
             }
         }
 
@@ -82,7 +60,6 @@ namespace SelfHelperRE.Controllers
         {
             if (targetCatch.Id != "" && targetCatch.Id != null)
             {
-
                 await targetService.DeleteTarget(targetCatch);
             }
         }

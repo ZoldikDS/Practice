@@ -1,7 +1,7 @@
-$(window).on('load', function (){
-    date = $('.datedrop .select span').text();
-    LoadCategories();
-    LoadNotes();
+$(window).on('load', async function (){
+    date = /*$('.datedrop .select span').text();*/ "01.01.0001 00:00:00";
+    await LoadCategories();
+    await LoadNotes();
 });
 
 let date;
@@ -50,7 +50,7 @@ $('.datedrop .date-menu li').click(function () {
     }
     else{
         $('.note-date').prop('disabled', true);
-        date = $('.datedrop .select span').text();
+        date = /*$('.datedrop .select span').text();*/ null;
         LoadNotes()
     }
 });
@@ -92,14 +92,14 @@ async function LoadCategories(){
 }
 
 async function LoadNotes(){
-    category = $('.typedrop .select span').text();
+    topic = $('.typedrop .select span').text();
 
     const response = await fetch('/Note/LoadNotes', {
         method: 'POST',
         headers: { "Accept": "application/json", "Content-Type": "application/json"},
         body: JSON.stringify({
-            date: date,
-            category: category
+            dateTime: date,
+            topic: topic
         } )
     }).catch(err => console.error("Error", err));
 
@@ -142,12 +142,12 @@ async function LoadNotes(){
             headers: { "Accept": "application/json" }
         }).catch(err => console.error("Error", err));
     
-        const categories = await response.json();
+        const notes = await response.json();
     
         $('.type-menu-form').empty();
     
-        for(var i = 0; i < categories.length; i++){
-            $('.type-menu-form').append($('<li>' + categories[i].topic + '</li>'));
+        for(var i = 0; i < notes.length; i++){
+            $('.type-menu-form').append($('<li>' + notes[i].topic + '</li>'));
         }
     
         $('.type-menu-form').append($('<li>Редактировать/Новая категория</li>'));
@@ -255,7 +255,7 @@ async function LoadNotes(){
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             text: editText,
-                            category: editCategory,
+                            topic: editCategory,
                             title: editTitle,
                             important: editImportant, 
                             id: id
@@ -426,10 +426,10 @@ $('.add-note h2').click(function(){
             text = $('.note-form .text').val();
             title = $('.note-form .title').val();
             if($('.typedrop-form span').text() != 'Новая категория'){
-                category = $('.typedrop-form span').text();
+                topic = $('.typedrop-form span').text();
             }
             else{
-                category = $('.note-form .topic').val();
+                topic = $('.note-form .topic').val();
             }
 
             if($('.important').is(":checked")){
@@ -439,14 +439,14 @@ $('.add-note h2').click(function(){
                 important = "false";
             }
 
-            if(text != "" && title != "" && category != ""){
+            if(text != "" && title != "" && topic != ""){
                 const response = await fetch("/Note/AddNote", {
                     method: "Post",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         text: text,
                         title: title,
-                        category: category,
+                        topic: topic,
                         important: important 
                     })
                 });

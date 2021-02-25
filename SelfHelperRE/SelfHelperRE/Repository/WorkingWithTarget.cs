@@ -14,89 +14,127 @@ namespace Repository
         {
             db = new ApplicationContext();
         }
-        public async Task AddTarget(string login, Target obj)
+        public async Task<int> AddTarget(string login, Target obj)
         {
             User user = db.Users.FirstOrDefault(e => e.Login == login);
 
             if (user != null)
             {
-                db.Targets.Add(new Target { Text = obj.Text, Status = "Performed", DateTimeFirst = obj.DateTimeFirst, DateTimeSecond = obj.DateTimeSecond, User = user });
-
-                await db.SaveChangesAsync();
-            }
-        }
-
-        public async Task ChangeStatus(Target obj)
-        {
-            Target target = db.Targets.FirstOrDefault(e => e.Id == obj.Id);
-
-            if (target != null)
-            {
-                target.Status = obj.Status;
-
-                await db.SaveChangesAsync();
-            }
-        }
-
-        public bool CheckAddTarget(Target obj, string login)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CheckPerformedStatus()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CheckStatus(Target obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CheckTarget(Target obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task CheckTimeStatus()
-        {
-            IEnumerable<Target> targets = db.Targets.Where(e => e.Status == "Performed").ToList();
-
-            foreach (var item in targets)
-            {
-                if (item.DateTimeSecond < DateTime.Now)
+                try
                 {
-                    item.Status = "Failed";
+                    db.Targets.Add(new Target { Text = obj.Text, Status = "Performed", DateTimeFirst = obj.DateTimeFirst, DateTimeSecond = obj.DateTimeSecond, User = user });
+
+                    await db.SaveChangesAsync();
+
+                    return 1;
                 }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
             }
 
-            await db.SaveChangesAsync();
+            return -1;
         }
 
-        public async Task DeleteTarget(Target obj)
+        public async Task<int> ChangeStatus(Target obj)
         {
             Target target = db.Targets.FirstOrDefault(e => e.Id == obj.Id);
 
             if (target != null)
             {
-                db.Targets.Remove(target);
+                try
+                {
+                    target.Status = obj.Status;
 
-                await db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
             }
+
+            return -1;
         }
 
-        public async Task EditTarget(Target obj)
+        public async Task<int> CheckTimeStatus()
+        {
+            try
+            {
+                IEnumerable<Target> targets = db.Targets.Where(e => e.Status == "Performed").ToList();
+
+                foreach (var item in targets)
+                {
+                    if (item.DateTimeSecond < DateTime.Now)
+                    {
+                        item.Status = "Failed";
+                    }
+                }
+
+                await db.SaveChangesAsync();
+
+                return 1;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+
+        }
+
+        public async Task<int> DeleteTarget(Target obj)
         {
             Target target = db.Targets.FirstOrDefault(e => e.Id == obj.Id);
 
             if (target != null)
             {
-                target.Text = obj.Text;
-                target.DateTimeFirst = obj.DateTimeFirst;
-                target.DateTimeSecond = obj.DateTimeSecond;
+                try
+                {
+                    db.Targets.Remove(target);
 
-                await db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
             }
+
+            return -1;
+        }
+
+        public async Task<int> EditTarget(Target obj)
+        {
+            Target target = db.Targets.FirstOrDefault(e => e.Id == obj.Id);
+
+            if (target != null)
+            {
+                try
+                {
+                    target.Text = obj.Text;
+                    target.DateTimeFirst = obj.DateTimeFirst;
+                    target.DateTimeSecond = obj.DateTimeSecond;
+
+                    await db.SaveChangesAsync();
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
+            }
+
+            return -1;
         }
 
         public async Task<List<Target>> GetTargets(string login, Target obj)

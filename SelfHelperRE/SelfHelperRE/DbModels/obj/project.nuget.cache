@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "h70p5ZvgON2WfSvqNiOXScDvWBBpEJEvNKZ2KxCOujixw55qbSD6aWx9dwPDZ4hxwdt/t0QFJFlIyizA6gcBZA==",
+  "dgSpecHash": "Z6MU8CggujCPJPgIFSd/9Ju1LScaGHiLiYOMLTl244qFIW3OEiP+uAg1Xk4RmPM9g7Lfwv2F3qU2nmIjkvIZMg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\DbModels\\DbModels.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\37529\\.nuget\\packages\\automapper\\7.0.1\\automapper.7.0.1.nupkg.sha512",
+    "C:\\Users\\37529\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\5.0.1\\automapper.extensions.microsoft.dependencyinjection.5.0.1.nupkg.sha512",
+    "C:\\Users\\37529\\.nuget\\packages\\housecool.automapper.extensions.dependencyinjection\\1.0.3\\housecool.automapper.extensions.dependencyinjection.1.0.3.nupkg.sha512",
+    "C:\\Users\\37529\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.0.0\\microsoft.extensions.dependencyinjection.abstractions.2.0.0.nupkg.sha512",
+    "C:\\Users\\37529\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }

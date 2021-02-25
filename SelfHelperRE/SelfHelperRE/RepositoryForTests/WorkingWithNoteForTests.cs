@@ -15,7 +15,7 @@ namespace RepositoryForTests
             context = new ApplicationContextForTests();
         }
 
-        public async Task AddNote(Note obj, string login)
+        public async Task<int> AddNote(Note obj, string login)
         {
             DateTime dateTime = DateTime.Now;
 
@@ -23,53 +23,71 @@ namespace RepositoryForTests
 
             if (user != null)
             {
-                obj.Id = context.notes.Count();
+                try
+                {
+                    obj.Id = context.notes.Count();
 
-                obj.User = user;
+                    obj.User = user;
 
-                context.notes.Add(obj);
-            };
+                    context.notes.Add(obj);
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
+            }
+
+            return -1;
         }
 
-        public async Task DeleteNote(Note obj)
+        public async Task<int> DeleteNote(Note obj)
         {
             Note note = context.notes.FirstOrDefault(e => e.Id == obj.Id);
 
             if (note != null)
             {
-                context.notes.Remove(note);
+                try
+                {
+                    context.notes.Remove(note);
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
             }
+
+            return -1;
         }
 
-        public async Task EditNote(Note obj)
+        public async Task<int> EditNote(Note obj)
         {
             Note note = context.notes.FirstOrDefault(e => e.Id == obj.Id);
 
             if (note != null)
             {
-                note.Text = obj.Text;
-                note.Topic = obj.Topic;
-                note.Title = obj.Title;
-                note.Important = obj.Important;
+                try
+                {
+                    note.Text = obj.Text;
+                    note.Topic = obj.Topic;
+                    note.Title = obj.Title;
+                    note.Important = obj.Important;
+
+                    return 1;
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
             }
+
+            return -1;
         }
-
-        public bool CheckAddNote(Note obj, string login)
-        {
-            User user = context.users.FirstOrDefault(e => e.Login == login);
-
-            Note note = context.notes.FirstOrDefault(e => e.Text == obj.Text && e.Title == obj.Title && e.Topic == obj.Topic && e.Important == obj.Important && e.User == user);
-
-            return note != null;
-        }
-
-        public bool CheckNote(Note obj)
-        {
-            Note note = context.notes.FirstOrDefault(e => e.Id == obj.Id);
-
-            return note != null;
-        }
-
 
         public async Task<List<Note>> GetCategories(string login)
         {

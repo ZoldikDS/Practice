@@ -1,11 +1,12 @@
-﻿using SelfHelperRE.Models;
+﻿using SelfHelperRE;
+using SelfHelperRE.Models;
 using System.Collections.Generic;
 
 namespace SelfHelper.Comparers
 {
-    public class NoteTopicComparer : IEqualityComparer<NoteData>
+    public class NoteTopicComparer : IEqualityComparer<NoteCatch>
     {
-        bool IEqualityComparer<NoteData>.Equals(NoteData x, NoteData y)
+        bool IEqualityComparer<NoteCatch>.Equals(NoteCatch x, NoteCatch y)
         {
             if (x.Topic == y.Topic)
                 return true;
@@ -13,7 +14,7 @@ namespace SelfHelper.Comparers
             return false;
         }
 
-        int IEqualityComparer<NoteData>.GetHashCode(NoteData obj)
+        int IEqualityComparer<NoteCatch>.GetHashCode(NoteCatch obj)
         {
             return 0;
         }

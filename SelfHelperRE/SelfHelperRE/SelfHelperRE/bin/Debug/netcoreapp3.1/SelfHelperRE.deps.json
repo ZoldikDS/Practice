@@ -25,7 +25,9 @@
       "SelfHelperRE/1.0.0": {
         "dependencies": {
           "DbModels": "1.0.0",
+          "HouseCool.AutoMapper.Extensions.DependencyInjection": "1.0.3",
           "MailKit": "2.10.1",
+          "Mapping": "1.0.0",
           "Repository": "1.0.0",
           "Services": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
@@ -319,6 +321,35 @@
         },
         "compile": {
           "lib/netstandard2.0/AutoMapper.dll": {}
+        }
+      },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/5.0.1": {
+        "dependencies": {
+          "AutoMapper": "10.1.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "5.0.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "HouseCool.AutoMapper.Extensions.DependencyInjection/1.0.3": {
+        "dependencies": {
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "5.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/HouseCool.AutoMapper.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "1.0.3.0",
+            "fileVersion": "1.0.3.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/HouseCool.AutoMapper.Extensions.DependencyInjection.dll": {}
         }
       },
       "MailKit/2.10.1": {
@@ -1422,6 +1453,9 @@
         }
       },
       "DbModels/1.0.0": {
+        "dependencies": {
+          "HouseCool.AutoMapper.Extensions.DependencyInjection": "1.0.3"
+        },
         "runtime": {
           "DbModels.dll": {}
         },
@@ -1432,6 +1466,7 @@
       "Mapping/1.0.0": {
         "dependencies": {
           "AutoMapper": "10.1.1",
+          "HouseCool.AutoMapper.Extensions.DependencyInjection": "1.0.3",
           "Repository": "1.0.0"
         },
         "runtime": {
@@ -1444,6 +1479,7 @@
       "Repository/1.0.0": {
         "dependencies": {
           "DbModels": "1.0.0",
+          "HouseCool.AutoMapper.Extensions.DependencyInjection": "1.0.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.2"
         },
         "runtime": {
@@ -1453,23 +1489,11 @@
           "Repository.dll": {}
         }
       },
-      "RepositoryForTests/1.0.0": {
-        "dependencies": {
-          "DbModels": "1.0.0",
-          "Repository": "1.0.0"
-        },
-        "runtime": {
-          "RepositoryForTests.dll": {}
-        },
-        "compile": {
-          "RepositoryForTests.dll": {}
-        }
-      },
       "Services/1.0.0": {
         "dependencies": {
+          "HouseCool.AutoMapper.Extensions.DependencyInjection": "1.0.3",
           "Mapping": "1.0.0",
-          "Repository": "1.0.0",
-          "RepositoryForTests": "1.0.0"
+          "Repository": "1.0.0"
         },
         "runtime": {
           "Services.dll": {}
@@ -3113,6 +3137,20 @@
       "path": "automapper/10.1.1",
       "hashPath": "automapper.10.1.1.nupkg.sha512"
     },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/5.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7MIq6D/ax3964iHXbL1L2ldUvl6IlKp0p1GZFzr6vlIhEVyp4CgJwOpisRLvIO7dP+kDtbY3Hb9yuPNCkfyBFg==",
+      "path": "automapper.extensions.microsoft.dependencyinjection/5.0.1",
+      "hashPath": "automapper.extensions.microsoft.dependencyinjection.5.0.1.nupkg.sha512"
+    },
+    "HouseCool.AutoMapper.Extensions.DependencyInjection/1.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LQa6a1bImslOxqjbk3qhYKNmZ1uyUXx6JiwLwQUWrXf5gaGP7+DO6hzLwfsSXmXp9sW+wshsXrQJzjfJY0srgg==",
+      "path": "housecool.automapper.extensions.dependencyinjection/1.0.3",
+      "hashPath": "housecool.automapper.extensions.dependencyinjection.1.0.3.nupkg.sha512"
+    },
     "MailKit/2.10.1": {
       "type": "package",
       "serviceable": true,
@@ -3817,11 +3855,6 @@
       "sha512": ""
     },
     "Repository/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "RepositoryForTests/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

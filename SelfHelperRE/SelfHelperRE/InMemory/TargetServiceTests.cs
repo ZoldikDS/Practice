@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using AutoMapper;
+using Mapping;
+using NUnit.Framework;
 using RepositoryForTests;
 using SelfHelperRE;
 using SelfHelperRE.Models;
@@ -13,15 +15,20 @@ namespace InMemory
     public class TargetServiceTests
     {
         TargetService<TargetCatch> targetService;
-        TargetService<TargetData> targetDataService;
 
         WorkingWithTargetForTest workingWithTargetForTest = new WorkingWithTargetForTest();
 
         [SetUp]
         public void Setup()
         {
-            targetService = new TargetService<TargetCatch>(workingWithTargetForTest);
-            targetDataService = new TargetService<TargetData>(workingWithTargetForTest);
+            MapperConfiguration mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingTarget<TargetCatch>());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+
+            targetService = new TargetService<TargetCatch>(workingWithTargetForTest, mapper);
         }
 
         [Test]
@@ -33,75 +40,64 @@ namespace InMemory
         {
             string login = "zoldik";
 
-            TargetData targetData = new TargetData() {Status = status };
+            TargetCatch targetData = new TargetCatch() {Status = status };
 
-            List<TargetData> result = await targetDataService.LoadTargets(login, targetData);
+            List<TargetCatch> result = await targetService.LoadTargets(login, targetData);
 
             Assert.IsNotNull(result);
         }
 
         [Test]
-        [TestCase(0, "Failed")]
-        [TestCase(3, "Completed")]
-        [TestCase(0, "Performed")]
-        public async Task Change_Status_Test(int id, string status)
+        [TestCase("0", "Failed")]
+        [TestCase("3", "Completed")]
+        [TestCase("0", "Performed")]
+        public async Task Change_Status_Test(string id, string status)
         {
+            TargetCatch targetData = new TargetCatch() { Id = id, Status = status };
 
-            TargetData targetData = new TargetData() { Id = id, Status = status };
-
-            await targetDataService.ChangeStatus(targetData);
-
-            Assert.IsTrue(targetDataService.CheckStatus(targetData));
+            Assert.AreEqual(1, await targetService.ChangeStatus(targetData));
         }
 
         [Test]
         public async Task Check_Time_Status_Test()
         {
-            await targetService.CheckTimeStatus();
-
-            Assert.IsFalse(targetService.CheckPerformedStatus());
+            Assert.AreEqual(1, await targetService.CheckTimeStatus());
         }
 
         [Test]
         public async Task Add_Target_Test()
         {
-            TargetData targetData = new TargetData() { Text = "Text from test", DateTimeFirst = Convert.ToDateTime("01.01.2021 22:40:00"), DateTimeSecond = Convert.ToDateTime("03.01.2021 00:00:00"), Status = "Performed" };
+            TargetCatch targetData = new TargetCatch() { Text = "Text from test", DateTimeFirst = "01.01.2021 22:40:00", DateTimeSecond = "03.01.2021 00:00:00", Status = "Performed" };
 
             string login = "zoldik";
 
-            await targetDataService.AddTarget(login, targetData);
-
-            Assert.IsTrue(targetDataService.CheckAddTarget(targetData, login));
+            Assert.AreEqual(1, await targetService.AddTarget(login, targetData));
         }   
         
         [Test]
         public async Task Edit_Target_Test()
         {
-            TargetData targetData = new TargetData()
+            TargetCatch targetData = new TargetCatch()
             {
-                Id = 0,
+                Id = "0",
                 Text = "Text from test for edit",
-                DateTimeFirst = Convert.ToDateTime("01.01.2021 22:40:00"),
-                DateTimeSecond = Convert.ToDateTime("03.01.2021 00:00:00"),
+                DateTimeFirst = "01.01.2021 22:40:00",
+                DateTimeSecond = "03.01.2021 00:00:00",
                 Status = "Performed"
             };
 
-            await targetDataService.EditTarget(targetData);
-
-            Assert.IsTrue(targetDataService.CheckTarget(targetData));
+            Assert.AreEqual(1, await targetService.EditTarget(targetData));
         }       
         
         [Test]
         public async Task Delete_Target_Test()
         {
-            TargetData targetData = new TargetData()
+            TargetCatch targetData = new TargetCatch()
             {
-                Id = 1
+                Id = "1"
             };
 
-            await targetDataService.DeleteTarget(targetData);
-
-            Assert.IsFalse(targetDataService.CheckTarget(targetData));
+            Assert.AreEqual(1, await targetService.DeleteTarget(targetData));
         }
     }
 }

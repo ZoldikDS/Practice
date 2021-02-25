@@ -6,4 +6,3 @@ D:\Projects\Practice\SelfHelperRE\SelfHelperRE\DbModels\obj\Debug\netcoreapp3.1\
 D:\Projects\Practice\SelfHelperRE\SelfHelperRE\DbModels\obj\Debug\netcoreapp3.1\DbModels.csproj.CoreCompileInputs.cache
 D:\Projects\Practice\SelfHelperRE\SelfHelperRE\DbModels\obj\Debug\netcoreapp3.1\DbModels.dll
 D:\Projects\Practice\SelfHelperRE\SelfHelperRE\DbModels\obj\Debug\netcoreapp3.1\DbModels.pdb
-D:\Projects\Practice\SelfHelperRE\SelfHelperRE\DbModels\obj\Debug\netcoreapp3.1\DbModels.csprojAssemblyReference.cache

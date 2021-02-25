@@ -7,11 +7,8 @@ namespace DbModels
     {
         public Task<List<T>> GetCategories(string login);
         public Task<List<T>> GetNotes(T obj, string login);
-        public Task AddNote(T obj, string login);
-        public Task EditNote(T obj);
-        public Task DeleteNote(T obj);
-
-        public bool CheckAddNote(T obj, string login);
-        public bool CheckNote(T obj);
+        public Task<int> AddNote(T obj, string login);
+        public Task<int> EditNote(T obj);
+        public Task<int> DeleteNote(T obj);
     }
 }

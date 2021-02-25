@@ -1,4 +1,5 @@
-﻿using DbModels;
+﻿using AutoMapper;
+using DbModels;
 using Mapping;
 using Repository;
 using System.Collections.Generic;
@@ -10,19 +11,18 @@ namespace Services
     {
 
         ITarget<Target> service;
-        MappingForTarget<T> mapping;
+        IMapper targetMapper;
 
-
-        public TargetService(ITarget<Target> service)
+        public TargetService(ITarget<Target> service, IMapper targetMapper)
         {
-            mapping = new MappingForTarget<T>();
+            this.targetMapper = targetMapper;
             this.service = service;
 
         }
 
         public async Task<List<T>> LoadTargets(string login, T obj)
         {
-            Target target = mapping.TargetMapping(obj);
+            Target target = targetMapper.Map<Target>(obj);
 
             List<Target> targets = await service.GetTargets(login, target);
 
@@ -30,69 +30,43 @@ namespace Services
 
             foreach (var item in targets)
             {
-                result.Add(mapping.BackTargetMapping(item));
+                result.Add(targetMapper.Map<T>(item));
             }
 
             return result;
         }
 
-        public async Task ChangeStatus(T obj)
+        public async Task<int> ChangeStatus(T obj)
         {
-            Target target = mapping.TargetMapping(obj);
+            Target target = targetMapper.Map<Target>(obj);
 
-            await service.ChangeStatus(target);
+            return await service.ChangeStatus(target);
         }
 
-        public async Task CheckTimeStatus()
+        public async Task<int> CheckTimeStatus()
         {
-            await service.CheckTimeStatus();
+            return await service.CheckTimeStatus();
         }
 
-        public async Task AddTarget(string login, T obj)
+        public async Task<int> AddTarget(string login, T obj)
         {
-            Target target = mapping.TargetMapping(obj);
+            Target target = targetMapper.Map<Target>(obj);
 
-            await service.AddTarget(login, target);
+            return await service.AddTarget(login, target);
         }
 
-        public async Task EditTarget(T obj)
+        public async Task<int> EditTarget(T obj)
         {
-            Target target = mapping.TargetMapping(obj);
+            Target target = targetMapper.Map<Target>(obj);
 
-            await service.EditTarget(target);
+            return await service.EditTarget(target);
         }
 
-        public async Task DeleteTarget(T obj)
+        public async Task<int> DeleteTarget(T obj)
         {
-            Target target = mapping.TargetMapping(obj);
+            Target target = targetMapper.Map<Target>(obj);
 
-            await service.DeleteTarget(target);
-        }
-
-        public bool CheckTarget(T obj)
-        {
-            Target target = mapping.TargetMapping(obj);
-
-            return service.CheckTarget(target);
-        }
-
-        public bool CheckAddTarget(T obj, string login)
-        {
-            Target target = mapping.TargetMapping(obj);
-
-            return service.CheckAddTarget(target, login);
-        }
-
-        public bool CheckPerformedStatus()
-        {
-            return service.CheckPerformedStatus();
-        }
-
-        public bool CheckStatus(T obj)
-        {
-            Target target = mapping.TargetMapping(obj);
-
-            return service.CheckStatus(target);
+            return await service.DeleteTarget(target);
         }
 
     }

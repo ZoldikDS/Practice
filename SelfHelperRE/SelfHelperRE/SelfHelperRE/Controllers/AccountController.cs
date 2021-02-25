@@ -1,4 +1,5 @@
-﻿using DbModels;
+﻿using AutoMapper;
+using DbModels;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -21,12 +22,12 @@ namespace SelfHelperRE.Controllers
         UserService<CheckEmail> userServiceEmail;
         UserService<UserData> userServiceData;
 
-        public AccountController(IUser<User> service)
+        public AccountController(IUser<User> service, IMapper mapper)
         {
-            userServiceLogin = new UserService<LoginModel>(service);
-            userServiceRegistration = new UserService<RegisterModel>(service);
-            userServiceEmail = new UserService<CheckEmail>(service);
-            userServiceData = new UserService<UserData>(service);
+            userServiceLogin = new UserService<LoginModel>(service, mapper);
+            userServiceRegistration = new UserService<RegisterModel>(service, mapper);
+            userServiceEmail = new UserService<CheckEmail>(service, mapper);
+            userServiceData = new UserService<UserData>(service, mapper);
         }
         [HttpGet]
         public IActionResult Login()

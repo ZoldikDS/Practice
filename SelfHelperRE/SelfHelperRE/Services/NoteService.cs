@@ -1,4 +1,5 @@
-﻿using DbModels;
+﻿using AutoMapper;
+using DbModels;
 using Mapping;
 using Repository;
 using System.Collections.Generic;
@@ -9,13 +10,12 @@ namespace Services
     public class NoteService <T>
     {
         INote<Note> service;
-        MappingForNote<T> mapping;
+        IMapper noteMapper;
 
-        bool TestMod;
 
-        public NoteService(INote<Note> service)
+        public NoteService(INote<Note> service, IMapper noteMapper)
         {
-            mapping = new MappingForNote<T>();
+            this.noteMapper = noteMapper;
             this.service = service;
         }
 
@@ -27,7 +27,7 @@ namespace Services
 
             foreach (var item in notes)
             {
-                result.Add(mapping.BackNoteMapping(item));
+                result.Add(noteMapper.Map<T>(item));
             }
 
             return result;
@@ -35,7 +35,7 @@ namespace Services
 
         public async Task<List<T>> LoadNotes(T obj, string login)
         {
-            Note note = mapping.NoteMapping(obj);
+            Note note = noteMapper.Map<Note>(obj);
 
             List<Note> notes = await service.GetNotes(note, login);
 
@@ -43,48 +43,31 @@ namespace Services
 
             foreach (var item in notes)
             {
-                result.Add(mapping.BackNoteMapping(item));
+                result.Add(noteMapper.Map<T>(item));
             }
 
             return result;
         }
 
-        public async Task AddNote(T obj, string login)
+        public async Task<int> AddNote(T obj, string login)
         {
-            Note note = mapping.NoteMapping(obj);
+            Note note = noteMapper.Map<Note>(obj);
 
-            await service.AddNote(note, login);
-
+            return await service.AddNote(note, login);
         }
 
-        public async Task EditNote(T obj)
+        public async Task<int> EditNote(T obj)
         {
-            Note note = mapping.NoteMapping(obj);
+            Note note = noteMapper.Map<Note>(obj);
 
-            await service.EditNote(note);
-
+            return await service.EditNote(note);
         }
 
-        public async Task DeleteNote(T obj)
+        public async Task<int> DeleteNote(T obj)
         {
-            Note note = mapping.NoteMapping(obj);
+            Note note = noteMapper.Map<Note>(obj);
 
-            await service.DeleteNote(note);
-
-        }
-
-        public bool CheckAddNoteForTest(T obj, string login)
-        {
-            Note note = mapping.NoteMapping(obj);
-
-            return service.CheckAddNote(note, login);
-        }    
-        
-        public bool CheckNoteForTest(T obj)
-        {
-            Note note = mapping.NoteMapping(obj);
-
-            return service.CheckNote(note);
+            return await service.DeleteNote(note);
         }
     }
 }

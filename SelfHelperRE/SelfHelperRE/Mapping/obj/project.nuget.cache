@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "tGHgT26WTXy9gHLHOfq6PZexTzLSSyA20yZcNqsO3e0g0Rymli12cAwVWoLmY5X/EEXK22J/KlNaudEDid1aSw==",
+  "dgSpecHash": "GSjD9o4Os4jke6QM8s7RZ6cSdQ9NtEp8br3P0Isi2NHlYVMwrZOzJgTQP6WyEDBWQYse+QLX0fNPzWO90xPGgQ==",
   "success": true,
   "projectFilePath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\Mapping\\Mapping.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\37529\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\37529\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\5.0.1\\automapper.extensions.microsoft.dependencyinjection.5.0.1.nupkg.sha512",
+    "C:\\Users\\37529\\.nuget\\packages\\housecool.automapper.extensions.dependencyinjection\\1.0.3\\housecool.automapper.extensions.dependencyinjection.1.0.3.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",

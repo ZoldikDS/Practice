@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "vIY2uuDDSlDGWdH2fhdsYMZDm8rf/fos+JznOlzo8DS74/8p8rbetRSYnBgLDZQyi7ePWZgRyQ5y0uh2HaPGMQ==",
+  "dgSpecHash": "riGubijgk4/vRvftBxMfS42k9z65yXCdqR3ym+vgoL/1vex6KjRoapEFmRaEiHB63/OYazcqZ90gUTz20zbV+g==",
   "success": true,
   "projectFilePath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\InMemory\\InMemory.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\37529\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\37529\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\5.0.1\\automapper.extensions.microsoft.dependencyinjection.5.0.1.nupkg.sha512",
+    "C:\\Users\\37529\\.nuget\\packages\\housecool.automapper.extensions.dependencyinjection\\1.0.3\\housecool.automapper.extensions.dependencyinjection.1.0.3.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\mailkit\\2.10.1\\mailkit.2.10.1.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Users\\37529\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

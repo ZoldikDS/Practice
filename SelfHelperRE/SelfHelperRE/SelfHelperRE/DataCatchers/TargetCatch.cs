@@ -5,8 +5,8 @@ namespace SelfHelperRE
     {
         public string Id { get; set; }
         public string Status { get; set; }
-        public string DateTimeStart { get; set; }
-        public string DateTimeEnd { get; set; }
+        public string DateTimeFirst { get; set; }
+        public string DateTimeSecond { get; set; }
         public string Text { get; set; }
     }
 }

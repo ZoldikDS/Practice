@@ -43,6 +43,12 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "HouseCool.AutoMapper.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -90,6 +96,9 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
+              "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\Mapping\\Mapping.csproj": {
+                "projectPath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\Mapping\\Mapping.csproj"
+              },
               "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\RepositoryForTests\\RepositoryForTests.csproj": {
                 "projectPath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\RepositoryForTests\\RepositoryForTests.csproj"
               },
@@ -112,6 +121,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "HouseCool.AutoMapper.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.5.0, )"
@@ -194,6 +207,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[10.1.1, )"
+            },
+            "HouseCool.AutoMapper.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[1.0.3, )"
             }
           },
           "imports": [
@@ -261,6 +278,12 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "HouseCool.AutoMapper.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -324,6 +347,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "HouseCool.AutoMapper.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.2, )"
@@ -379,6 +406,9 @@
               "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\DbModels\\DbModels.csproj": {
                 "projectPath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\DbModels\\DbModels.csproj"
               },
+              "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\Mapping\\Mapping.csproj": {
+                "projectPath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\Mapping\\Mapping.csproj"
+              },
               "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\Repository\\Repository.csproj": {
                 "projectPath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\Repository\\Repository.csproj"
               },
@@ -398,6 +428,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "HouseCool.AutoMapper.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
             "MailKit": {
               "target": "Package",
               "version": "[2.10.1, )"
@@ -456,9 +490,6 @@
               "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\Mapping\\Mapping.csproj": {
                 "projectPath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\Mapping\\Mapping.csproj"
               },
-              "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\RepositoryForTests\\RepositoryForTests.csproj": {
-                "projectPath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\RepositoryForTests\\RepositoryForTests.csproj"
-              },
               "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\Repository\\Repository.csproj": {
                 "projectPath": "D:\\Projects\\Practice\\SelfHelperRE\\SelfHelperRE\\Repository\\Repository.csproj"
               }
@@ -474,6 +505,12 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "HouseCool.AutoMapper.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

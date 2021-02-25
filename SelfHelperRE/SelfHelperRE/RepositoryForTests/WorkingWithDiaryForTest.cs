@@ -14,65 +14,70 @@ namespace RepositoryForTests
             context = new ApplicationContextForTests();
         }
 
-        public async Task AddEntry(Diary obj, string login)
+        public async Task<int> AddEntry(Diary obj, string login)
         {
             User user = context.users.FirstOrDefault(u => u.Login == login);
 
             if (user != null)
             {
-                obj.Id = context.diaries.Count();
+                try
+                {
+                    obj.Id = context.diaries.Count();
 
-                obj.User = user;
+                    obj.User = user;
 
-                context.diaries.Add(obj);
+                    context.diaries.Add(obj);
+
+                    return 1;
+                }
+                catch (System.Exception)
+                {
+                    return -1;
+                }
             }
+
+            return -1;
         }
 
-        public async Task DeleteEntry(Diary obj)
+        public async Task<int> DeleteEntry(Diary obj)
         {
             Diary diary = context.diaries.FirstOrDefault(u => u.Id == obj.Id);
 
             if (diary != null)
             {
-                context.diaries.RemoveAt(obj.Id);
+                try
+                {
+                    context.diaries.RemoveAt(obj.Id);
+                }
+                catch (System.Exception)
+                {
+
+                    return -1;
+                }
+
+                return 1;
             }
+
+            return -1;
         }
 
-        public async Task EditEntry(Diary obj)
+        public async Task<int> EditEntry(Diary obj)
         {
             Diary diary = context.diaries.FirstOrDefault(e => e.Id == obj.Id);
 
             if (diary != null)
             {
-                diary.Text = obj.Text;
-            }
-        }
-
-        public bool CheckAddEntry(Diary obj, string login)
-        {
-            User user = context.users.FirstOrDefault(e => e.Login == login);
-
-            Diary diary = context.diaries.FirstOrDefault(e => e.Text == obj.Text && e.User == user);
-
-
-            if (diary == null)
-            {
-                return false;
+                try
+                {
+                    diary.Text = obj.Text;
+                }
+                catch (System.Exception)
+                {
+                    return -1;
+                }
             }
 
-            return true;
-        }
-
-        public bool CheckEntry(Diary obj)
-        {
-            Diary diary = context.diaries.FirstOrDefault(e => e.Id == obj.Id);
-
-            if (diary == null)
-            {
-                return false;
-            }
-
-            return true;
+            return 1;
         }
 
         public async Task<List<Diary>> GetDates(string login)

@@ -15,6 +15,31 @@
           "lib/netstandard2.0/AutoMapper.dll": {}
         }
       },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/5.0.1": {
+        "type": "package",
+        "dependencies": {
+          "AutoMapper": "7.0.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "HouseCool.AutoMapper.Extensions.DependencyInjection/1.0.3": {
+        "type": "package",
+        "dependencies": {
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "5.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/HouseCool.AutoMapper.Extensions.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/HouseCool.AutoMapper.Extensions.DependencyInjection.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.7.0": {
         "type": "package",
         "compile": {
@@ -1492,6 +1517,9 @@
       "DbModels/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "HouseCool.AutoMapper.Extensions.DependencyInjection": "1.0.3"
+        },
         "compile": {
           "bin/placeholder/DbModels.dll": {}
         },
@@ -1504,6 +1532,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "DbModels": "1.0.0",
+          "HouseCool.AutoMapper.Extensions.DependencyInjection": "1.0.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.2"
         },
         "compile": {
@@ -1530,6 +1559,32 @@
         "lib/net461/AutoMapper.xml",
         "lib/netstandard2.0/AutoMapper.dll",
         "lib/netstandard2.0/AutoMapper.xml"
+      ]
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/5.0.1": {
+      "sha512": "7MIq6D/ax3964iHXbL1L2ldUvl6IlKp0p1GZFzr6vlIhEVyp4CgJwOpisRLvIO7dP+kDtbY3Hb9yuPNCkfyBFg==",
+      "type": "package",
+      "path": "automapper.extensions.microsoft.dependencyinjection/5.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "automapper.extensions.microsoft.dependencyinjection.5.0.1.nupkg.sha512",
+        "automapper.extensions.microsoft.dependencyinjection.nuspec",
+        "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll",
+        "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.pdb"
+      ]
+    },
+    "HouseCool.AutoMapper.Extensions.DependencyInjection/1.0.3": {
+      "sha512": "LQa6a1bImslOxqjbk3qhYKNmZ1uyUXx6JiwLwQUWrXf5gaGP7+DO6hzLwfsSXmXp9sW+wshsXrQJzjfJY0srgg==",
+      "type": "package",
+      "path": "housecool.automapper.extensions.dependencyinjection/1.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "housecool.automapper.extensions.dependencyinjection.1.0.3.nupkg.sha512",
+        "housecool.automapper.extensions.dependencyinjection.nuspec",
+        "lib/netstandard2.0/HouseCool.AutoMapper.Extensions.DependencyInjection.dll",
+        "lib/netstandard2.0/HouseCool.AutoMapper.Extensions.DependencyInjection.xml"
       ]
     },
     "Microsoft.CSharp/4.7.0": {
@@ -5774,6 +5829,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "AutoMapper >= 10.1.1",
+      "HouseCool.AutoMapper.Extensions.DependencyInjection >= 1.0.3",
       "Repository >= 1.0.0"
     ]
   },
@@ -5828,6 +5884,10 @@
           "AutoMapper": {
             "target": "Package",
             "version": "[10.1.1, )"
+          },
+          "HouseCool.AutoMapper.Extensions.DependencyInjection": {
+            "target": "Package",
+            "version": "[1.0.3, )"
           }
         },
         "imports": [

@@ -154,3 +154,5 @@ D:\Projects\Practice\SelfHelperRE\SelfHelperRE\InMemory\bin\Debug\netcoreapp3.1\
 D:\Projects\Practice\SelfHelperRE\SelfHelperRE\InMemory\bin\Debug\netcoreapp3.1\Mapping.pdb
 D:\Projects\Practice\SelfHelperRE\SelfHelperRE\InMemory\bin\Debug\netcoreapp3.1\Repository.pdb
 D:\Projects\Practice\SelfHelperRE\SelfHelperRE\InMemory\bin\Debug\netcoreapp3.1\RepositoryForTests.pdb
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\InMemory\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Projects\Practice\SelfHelperRE\SelfHelperRE\InMemory\bin\Debug\netcoreapp3.1\HouseCool.AutoMapper.Extensions.DependencyInjection.dll

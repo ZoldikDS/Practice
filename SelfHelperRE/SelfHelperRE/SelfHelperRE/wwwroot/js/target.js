@@ -79,10 +79,10 @@ async function LoadTargets(){
             '<div class="target-block" id="target'+ targets[i].id +'">'+
                 '<div class="target-content">'+
                     '<div class="up-block">'+
-                        '<p>'+  dateStart.slice(8, 10) + '.' + dateStart.slice(5, 7) + '.' + dateStart.slice(0, 4) + 
+                        '<p>'+  dateStart.slice(0, 2) + '.' + dateStart.slice(3, 5) + '.' + dateStart.slice(6, 10) + 
                         ' ' + timeStart.slice(1,6) +
                         ' - ' + 
-                        dateEnd.slice(8, 10) + '.' + dateEnd.slice(5, 7) + '.' + dateEnd.slice(0, 4) + 
+                        dateEnd.slice(0, 2) + '.' + dateEnd.slice(3, 5) + '.' + dateEnd.slice(6, 10) + 
                         ' ' + timeEnd.slice(1,6) + '</p>'+
                         '<div class="action">'+
                             '<div class="edit" id="'+ targets[i].id +'">'+
@@ -274,8 +274,8 @@ async function LoadTargets(){
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             text: text,
-                            dateTimeStart: datetime1,
-                            dateTimeEnd: datetime2,
+                            dateTimeFirst: datetime1,
+                            dateTimeSecond: datetime2,
                             id: id
                         })
                     });
@@ -431,8 +431,8 @@ async function LoadTargets(){
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             text: text,
-                            dateTimeStart: datetime1,
-                            dateTimeEnd: datetime2
+                            dateTimeFirst: datetime1,
+                            dateTimeSecond: datetime2
                         })
                     });
                     if (response.ok === true) {

@@ -1,3 +1,4 @@
+using AutoMapper;
 using DbModels;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -5,8 +6,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Repository;
+using Mapping;
+using SelfHelperRE.ViewModels;
 using SelfHelperRE.Models;
-using Services;
 
 namespace SelfHelperRE
 {
@@ -19,6 +21,21 @@ namespace SelfHelperRE
                  {
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
+
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingDiary<DiaryCatch>());
+                mc.AddProfile(new MappingNote<NoteCatch>());
+                mc.AddProfile(new MappingTarget<TargetCatch>());
+                mc.AddProfile(new MappingUser<CheckEmail>());
+                mc.AddProfile(new MappingUser<LoginModel>());
+                mc.AddProfile(new MappingUser<RegisterModel>());
+                mc.AddProfile(new MappingUser<UserData>());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+
+            services.AddSingleton(mapper);
 
             services.AddTransient<IDiary<Diary>, WorkingWithDiary>();
             services.AddTransient<INote<Note>, WorkingWithNote>();

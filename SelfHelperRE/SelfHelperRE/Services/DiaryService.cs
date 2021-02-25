@@ -3,19 +3,20 @@ using Mapping;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DbModels;
+using AutoMapper;
 
 namespace Services
 {
     public class DiaryService <T>
     {
-        MappingForDiary<T> mapping;
         IDiary<Diary> service;
+        IMapper diaryMapper;
 
-        public DiaryService(IDiary<Diary> service)
+        public DiaryService(IDiary<Diary> service, IMapper diaryMapper)
         {
             this.service = service;
 
-            mapping = new MappingForDiary<T>();
+            this.diaryMapper = diaryMapper;
         }
 
         public async Task<List<T>> LoadDates(string login)
@@ -26,7 +27,7 @@ namespace Services
 
             foreach (var item in diary)
             {
-                result.Add(mapping.BackDiaryMapping(item));
+                result.Add(diaryMapper.Map<T>(item));
             }
 
             return result;
@@ -34,7 +35,7 @@ namespace Services
 
         public async Task<List<T>> LoadEntries(T obj, string login)
         {
-            Diary diary = mapping.DiaryMapping(obj);
+            Diary diary = diaryMapper.Map<Diary>(obj);
 
             List<Diary> diaryList = await service.GetEntries(diary, login);
 
@@ -42,48 +43,34 @@ namespace Services
 
             foreach (var item in diaryList)
             {
-                result.Add(mapping.BackDiaryMapping(item));
+                result.Add(diaryMapper.Map<T>(item));
             }
 
             return result;
         }
 
-        public async Task AddEntry(T obj, string login)
+        public async Task<int> AddEntry(T obj, string login)
         {
-            Diary diary = mapping.DiaryMapping(obj);
+            Diary diary = diaryMapper.Map<Diary>(obj);
 
-            await service.AddEntry(diary, login);
+            return await service.AddEntry(diary, login);
 
         }
 
-        public async Task EditEntry(T obj)
+        public async Task<int> EditEntry(T obj)
         {
-            Diary diary = mapping.DiaryMapping(obj);
+            Diary diary = diaryMapper.Map<Diary>(obj);
 
-            await service.EditEntry(diary);
+            return await service.EditEntry(diary);
 
         }
 
-        public async Task DeleteEntry(T obj)
+        public async Task<int> DeleteEntry(T obj)
         {
-            Diary diary = mapping.DiaryMapping(obj);
+            Diary diary = diaryMapper.Map<Diary>(obj);
 
-            await service.DeleteEntry(diary);
+            return await service.DeleteEntry(diary);
 
-        }
-
-        public bool CheckAddEntry(T obj, string login)
-        {
-            Diary diary = mapping.DiaryMapping(obj);
-
-            return service.CheckAddEntry(diary, login);
-        }
-
-        public bool CheckEntry(T obj)
-        {
-            Diary diary = mapping.DiaryMapping(obj);
-
-            return service.CheckEntry(diary);
         }
     }
 }
